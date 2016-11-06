@@ -84,15 +84,13 @@
             </ul>
             </p>
             <div style="text-align:center;">
-                <a  href="/register" class="btn btn-primary">Get Started</a>
+                <a  href="/register" class="btn btn-primary">Get Started  &gt;</a>
             </div>
 
             <div class="links" style="text-align:center; padding-top:30px;">
-                <a style="padding:10px 15px;" href="https://laravel.com/docs">Documentation</a>
-                <a style="padding:10px 15px;" href="https://laracasts.com">Laracasts</a>
-                <a style="padding:10px 15px;" href="https://laravel-news.com">News</a>
-                <a style="padding:10px 15px;" href="https://forge.laravel.com">Forge</a>
-                <a style="padding:10px 15px;" href="https://github.com/laravel/laravel">GitHub</a>
+                <a style="padding:10px 15px;" href="https://keriganmarketing.com">Main Site</a>
+                <a style="padding:10px 15px;" href="https://keriganmarketing.com/portfolio/">Our Work</a>
+                <a style="padding:10px 15px;" href="https://keriganmarketing.com/freelunch/">News</a>
             </div>
         </div>
     </div>

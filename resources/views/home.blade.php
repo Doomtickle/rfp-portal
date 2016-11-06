@@ -9,7 +9,8 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                   <p>This will be a dashboard. For now, we'll just have this button.</p>
+                    <a class="btn btn-primary" href="/proposal_requests/create">Create RFP &gt;</a>
                 </div>
             </div>
         </div>
