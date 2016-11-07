@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ProposalRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class ProposalRequestsController extends Controller
 {
@@ -29,23 +31,31 @@ class ProposalRequestsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Requests\RFPRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\RFPRequest $request)
     {
-        //
+        ProposalRequest::create($request->all());
+
+        flash()->success('Success!', 'The RFP has been created.');
+
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $clientName
+     * @param $campaignName
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show($clientName, $campaignName)
     {
-        //
+        $rfp = ProposalRequest::campaignInfo($clientName, $campaignName)->first();
+
+        return view('proposal_requests.show', compact('rfp'));
     }
 
     /**

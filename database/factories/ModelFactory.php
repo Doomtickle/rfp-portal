@@ -22,3 +22,19 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\ProposalRequest::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'clientName' => $faker->name,
+        'clientIndustry' => $faker->jobTitle,
+        'campaignName' => $faker->colorName,
+        'basicDescription' => str_random(40),
+        'flightDateStart' => $faker->date('Y-m-d'),
+        'flightDateEnd' => $faker->date('Y-m-d'),
+        'staggered'     => $faker->boolean(50),
+        'budget'        => $faker->numberBetween(10000,500000)
+
+    ];
+});

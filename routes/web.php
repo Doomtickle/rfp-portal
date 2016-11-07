@@ -21,4 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::resource('proposal_requests', 'ProposalRequestsController');
+Route::get('/{clientName}/{campaignName}', 'ProposalRequestsController@show');
 
