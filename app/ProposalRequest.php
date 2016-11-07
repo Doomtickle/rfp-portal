@@ -37,4 +37,13 @@ class ProposalRequest extends Model
     {
         return $this->hasMany('App\Proposal');
     }
+
+    /**
+     * @param $budget
+     * @return string
+     */
+    public function getBudgetAttribute($budget)
+    {
+        return '$' . number_format($budget);
+    }
 }

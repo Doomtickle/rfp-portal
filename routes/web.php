@@ -22,4 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::resource('proposal_requests', 'ProposalRequestsController');
 Route::get('/{clientName}/{campaignName}', 'ProposalRequestsController@show');
+Route::post('{clientName}/{campaignName}/proposals', 'ProposalRequestsController@addProposal');
 

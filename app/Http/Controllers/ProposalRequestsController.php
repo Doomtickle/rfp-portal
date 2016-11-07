@@ -58,6 +58,19 @@ class ProposalRequestsController extends Controller
         return view('proposal_requests.show', compact('rfp'));
     }
 
+    public function addProposal($clientName, $campaignName, Request $request)
+    {
+        $file = $request->file('file');
+
+        $name = time() . $file->getClientOriginalName();
+
+        $file->move('rfps/proposals', $name);
+
+        $rfp = ProposalRequest::campaignInfo($clientName, $campaignName)->first();
+
+        $rfp->proposals()->create(['path' => "/rfps/proposals/{$name}"]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
