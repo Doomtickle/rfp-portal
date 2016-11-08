@@ -30,6 +30,8 @@ class CreateProposalTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proposals');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::drop('proposals');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

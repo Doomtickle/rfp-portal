@@ -1,4 +1,6 @@
 <?php
+use App\ProposalRequest;
+
 /**
  * Created by Daron Adkins.
  * Date: 11/6/16
@@ -16,4 +18,5 @@ function flash($title = null, $message = null)
     }
 
     return $flash->info($title, $message);
+
 }

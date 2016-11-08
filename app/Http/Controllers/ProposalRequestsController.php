@@ -3,15 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\ProposalRequest;
+use App\Proposal;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class ProposalRequestsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Authorization middleware.
      *
-     * @return \Illuminate\Http\Response
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        parent::__construct();
+    }
+
+    /**
+     *
      */
     public function index()
     {
@@ -53,22 +63,31 @@ class ProposalRequestsController extends Controller
      */
     public function show($clientName, $campaignName)
     {
-        $rfp = ProposalRequest::campaignInfo($clientName, $campaignName)->first();
+
+        $rfp = ProposalRequest::campaignInfo($clientName, $campaignName);
 
         return view('proposal_requests.show', compact('rfp'));
     }
 
+    /**
+     * @param $clientName
+     * @param $campaignName
+     * @param Request $request
+     * @return string
+     */
     public function addProposal($clientName, $campaignName, Request $request)
     {
-        $file = $request->file('file');
+        $this->validate($request, [
 
-        $name = time() . $file->getClientOriginalName();
+           'proposal' => 'required|mimes:docx,pdf,xlsx'
+        ]);
 
-        $file->move('rfps/proposals', $name);
 
-        $rfp = ProposalRequest::campaignInfo($clientName, $campaignName)->first();
+        $proposal = Proposal::fromForm($request->file('proposal'));
 
-        $rfp->proposals()->create(['path' => "/rfps/proposals/{$name}"]);
+        ProposalRequest::campaignInfo($clientName, $campaignName)->addProposal($proposal);
+
+
     }
 
     /**

@@ -34,6 +34,8 @@ class CreateProposalRequestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proposalRequests');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::drop('proposalRequests');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -16,16 +16,19 @@
             </div>
             <div class="col-md-4">
                 @foreach ($rfp->proposals as $proposal)
-                    <a target="_blank" href="{{$proposal->path}}">{{$proposal->path}}</a>
+                    <a target="_blank" href="/{{$proposal->path}}">{{$proposal->path}}</a>
                 @endforeach
             </div>
         </div>
     </div>
     <hr>
     <div class="container">
-        <form action="/{{ $rfp->clientName }}/{{ $rfp->campaignName }}/proposals"
+        <h2>Upload your proposal</h2>
+        <form id="addProposalsForm" action="/{{ $rfp->clientName }}/{{ $rfp->campaignName }}/proposals"
               method="POST"
-              class="dropzone">
+              class="dropzone"
+              enctype="multipart/form-data"
+              style="margin-bottom:50px;">
             {{ csrf_field() }}
         </form>
     </div>
@@ -33,4 +36,14 @@
 
 @section('scripts.footer')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
+    <script>
+
+        Dropzone.options.addProposalsForm = {
+
+          paramName: 'proposal',
+          maxFilesize: 3,
+          acceptedFiles: '.docx, .pdf, .xlsx, .xls, .csv'
+
+        };
+    </script>
 @endsection

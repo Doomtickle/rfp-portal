@@ -24,18 +24,33 @@ class ProposalRequest extends Model
 
     ];
 
-    public function scopeCampaignInfo($query, $clientName, $campaignName)
+    /**
+     * Find the ProposalRequest with the given params
+     * @param $clientName
+     * @param $campaignName
+     * @return mixed
+     */
+    public static function CampaignInfo($clientName, $campaignName)
     {
         $clientName = strtolower(str_replace('_', ' ', $clientName));
         $campaignName = strtolower(str_replace('_', ' ', $campaignName));
 
-        return $query->where(compact('clientName', 'campaignName'));
+        return static::where(compact('clientName', 'campaignName'))->first();
 
     }
 
     public function proposals()
     {
         return $this->hasMany('App\Proposal');
+    }
+
+    /**
+     * @param Proposal $proposal
+     * @return Model
+     */
+    public function addProposal(Proposal $proposal)
+    {
+        return $this->proposals()->save($proposal);
     }
 
     /**
