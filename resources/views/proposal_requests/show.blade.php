@@ -6,17 +6,36 @@
             <div class="col-md-8"><h1>{{$rfp->clientName}}</h1>
                 <h2>{{$rfp->campaignName}}</h2>
                 <hr>
-                <ul>
-                    <li>Industry: {{ $rfp->clientIndustry }}</li>
-                    <li>Basic Description: {{ $rfp->basicDescription }}</li>
-                    <li>Flight Date start: {{ $rfp->flightDateStart }}</li>
-                    <li>Flight Date end: {{ $rfp->flightDateEnd }}</li>
-                    <li>Budget: {{ $rfp->budget }}</li>
-                </ul>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="list-group">
+                            <ul>
+                                <li class="list-group-item" style="font-size:1.3em; text-align:center;">Snapshot</li>
+                                <li class="list-group-item"><strong>Industry:</strong>  {{ $rfp->clientIndustry }}</li>
+                                <li class="list-group-item"><strong>Flight Date start:</strong>  {{ $rfp->flightDateStart }}</li>
+                                <li class="list-group-item"><strong>Flight Date end:</strong>  {{ $rfp->flightDateEnd }}</li>
+                                <li class="list-group-item"><strong>Budget:</strong> {{ $rfp->budget }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="list-group">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="text-align:center;">Basic Description</h3>
+                                </div>
+                                <div class="panel-body">
+                                    {!! nl2br($rfp->basicDescription) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 @foreach ($rfp->proposals as $proposal)
-                    <a target="_blank" href="/{{$proposal->path}}">{{$proposal->path}}</a>
+                    {{--<a target="_blank" href="/{{$proposal->path}}">{{$proposal->path}}</a>--}}
+                   {{$proposal}}
                 @endforeach
             </div>
         </div>
@@ -40,9 +59,9 @@
 
         Dropzone.options.addProposalsForm = {
 
-          paramName: 'proposal',
-          maxFilesize: 3,
-          acceptedFiles: '.docx, .pdf, .xlsx, .xls, .csv'
+            paramName: 'proposal',
+            maxFilesize: 3,
+            acceptedFiles: '.docx, .pdf, .xlsx, .xls, .csv'
 
         };
     </script>
