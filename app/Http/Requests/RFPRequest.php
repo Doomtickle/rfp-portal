@@ -31,7 +31,7 @@ class RFPRequest extends FormRequest
             'flightDateStart' => 'required',
             'flightDateEnd' => 'required',
             'staggered'     => 'required',
-            'budget'        => 'required|integer'
+            'budget'        => 'required|numeric'
 
         ];
     }

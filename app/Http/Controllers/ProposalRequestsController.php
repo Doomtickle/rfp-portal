@@ -7,18 +7,24 @@ use App\Proposal;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
+
+
 class ProposalRequestsController extends Controller
 {
+    protected $user_id;
+
+
     /**
      * Authorization middleware.
      *
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['show']]);
 
         parent::__construct();
     }
+
 
     /**
      *
@@ -46,7 +52,13 @@ class ProposalRequestsController extends Controller
      */
     public function store(Requests\RFPRequest $request)
     {
-        ProposalRequest::create($request->all());
+
+        $pr = ProposalRequest::create($request->all());
+
+        $pr->user_id = \Auth::user()->id;
+
+        $pr->save();
+
 
         flash()->success('Success!', 'The RFP has been created.');
 
@@ -66,6 +78,7 @@ class ProposalRequestsController extends Controller
 
         $rfp = ProposalRequest::campaignInfo($clientName, $campaignName);
 
+
         return view('proposal_requests.show', compact('rfp'));
     }
 
@@ -75,17 +88,19 @@ class ProposalRequestsController extends Controller
      * @param Request $request
      * @return string
      */
-    public function addProposal($clientName, $campaignName, Request $request)
+    public function addFile($clientName, $campaignName, Request $request)
     {
         $this->validate($request, [
 
            'proposal' => 'required|mimes:docx,pdf,xlsx'
+
         ]);
+
 
 
         $proposal = Proposal::fromForm($request->file('proposal'));
 
-        ProposalRequest::campaignInfo($clientName, $campaignName)->addProposal($proposal);
+        return ProposalRequest::campaignInfo($clientName, $campaignName)->addProposal($proposal);
 
 
     }

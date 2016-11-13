@@ -25,6 +25,14 @@ class ProposalRequest extends Model
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * Find the ProposalRequest with the given params
      * @param $clientName
      * @param $campaignName
@@ -35,13 +43,13 @@ class ProposalRequest extends Model
         $clientName = strtolower(str_replace('_', ' ', $clientName));
         $campaignName = strtolower(str_replace('_', ' ', $campaignName));
 
-        return static::where(compact('clientName', 'campaignName'))->first();
+        return static::where(compact('clientName', 'campaignName'))->with('user')->first();
 
     }
 
     public function proposals()
     {
-        return $this->hasMany('App\Proposal');
+        return $this->hasMany(Proposal::class);
     }
 
     /**
@@ -59,6 +67,6 @@ class ProposalRequest extends Model
      */
     public function getBudgetAttribute($budget)
     {
-        return '$' . number_format($budget);
+        return '$' . number_format($budget, 2, '.', '');
     }
 }

@@ -16,13 +16,14 @@ class CreateProposalRequestsTable extends Migration
         Schema::create('proposalRequests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('clientName', 40);
+            $table->integer('user_id')->unsigned()->index();
             $table->string('clientIndustry', 40);
             $table->string('campaignName', 80);
             $table->text('basicDescription', 500);
             $table->date('flightDateStart');
             $table->date('flightDateEnd');
             $table->boolean('staggered');
-            $table->integer('budget');
+            $table->float('budget');
             $table->timestamps();
         });
     }

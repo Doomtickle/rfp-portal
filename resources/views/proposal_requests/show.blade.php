@@ -15,6 +15,9 @@
                                 <li class="list-group-item"><strong>Flight Date start:</strong>  {{ $rfp->flightDateStart }}</li>
                                 <li class="list-group-item"><strong>Flight Date end:</strong>  {{ $rfp->flightDateEnd }}</li>
                                 <li class="list-group-item"><strong>Budget:</strong> {{ $rfp->budget }}</li>
+                                <li class="list-group-item"><strong>Staggered:</strong> {{ $rfp->staggered  }}</li>
+                                <li class="list-group-item"><strong>Created By:</strong> {{ $rfp->user->company  }}</li>
+                                <li class="list-group-item"><strong>Created on:</strong> {{ date_format($rfp->created_at, 'm/d/Y')  }}</li>
                             </ul>
                         </div>
                     </div>

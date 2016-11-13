@@ -11,16 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    if(Auth::check()) {
-        return redirect('/home');
-    } else {
-        return view('welcome');
-    }
-});
+Route::get('/','PagesController@home');
 Auth::routes();
+Route::get('/about', 'PagesController@about');
 Route::get('/home', 'HomeController@index');
 Route::resource('proposal_requests', 'ProposalRequestsController');
 Route::get('/{clientName}/{campaignName}', 'ProposalRequestsController@show');
-Route::post('{clientName}/{campaignName}/proposals', 'ProposalRequestsController@addProposal');
+Route::post('{clientName}/{campaignName}/proposals', 'ProposalRequestsController@addFile');
 
