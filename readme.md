@@ -1,7 +1,6 @@
 #KMA Media Portal
 
-##Purpose
- ###This program needs to do the following:
+##Broad Scope
   
   - Allow users to create an account and log in (Done)
   - Admins should be able to create a Proposal Request(No admins yet)
