@@ -22,7 +22,7 @@ class CreateProposalRequestsTable extends Migration
             $table->text('basicDescription', 500);
             $table->date('flightDateStart');
             $table->date('flightDateEnd');
-            $table->boolean('staggered');
+            $table->string('staggered');
             $table->float('budget');
             $table->timestamps();
         });

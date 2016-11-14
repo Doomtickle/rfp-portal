@@ -41,8 +41,8 @@
     <div class="form-group col-md-3">
         <label for="staggered">Staggered?</label>
         <select name="staggered" id="staggered" class="form-control">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
         </select>
     </div>
 </div>
