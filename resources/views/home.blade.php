@@ -37,16 +37,20 @@
                             <th>Company Name</th>
                             <th>Campaign Name</th>
                             <th>Submitted on</th>
+                            <th>Submitted by</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {{ $prs = App\ProposalRequest::paginate(15) }}
+                        <?php
+                        $prs = App\ProposalRequest::with('user')->paginate(15);
+                       ?>
                         @foreach($prs as $pr)
                             <tr>
                                 <td>{{ $pr->id }}</td>
                                 <td>{{ $pr->clientName }}</td>
                                 <td>{{ $pr->campaignName }}</td>
                                 <td>{{ date_format($pr->created_at, 'M d, Y') }}</td>
+                                <td>{{ $pr->user->company }}</td>
                                 <td>
                                     <a class="btn btn-info" href="{{$pr->clientName.'/'.
                                         $pr->campaignName }}">
