@@ -37,8 +37,7 @@
             </div>
             <div class="col-md-4">
                 @foreach ($rfp->proposals as $proposal)
-                    {{--<a target="_blank" href="/{{$proposal->path}}">{{$proposal->path}}</a>--}}
-                   {{$proposal}}
+                    <a target="_blank" href="/{{$proposal->path}}">{{$proposal}}</a>
                 @endforeach
             </div>
         </div>

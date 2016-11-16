@@ -6,9 +6,12 @@ use App\ProposalRequest;
 use App\Proposal;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 
 
-
+/**
+ * @property  user_id
+ */
 class ProposalRequestsController extends Controller
 {
     protected $user_id;
@@ -59,10 +62,10 @@ class ProposalRequestsController extends Controller
 
         $pr->save();
 
-
+//        return redirect()->back();
         flash()->success('Success!', 'The RFP has been created.');
 
-        return redirect()->back();
+        return Redirect::to('/home');
     }
 
     /**

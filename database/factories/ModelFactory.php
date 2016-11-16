@@ -35,7 +35,7 @@ $factory->define(App\ProposalRequest::class, function (Faker\Generator $faker) {
         'basicDescription' => str_random(40),
         'flightDateStart' => $faker->date('Y-m-d'),
         'flightDateEnd' => $faker->date('Y-m-d'),
-        'staggered'     => $faker->boolean(50),
+        'staggered'     => 'Yes',
         'budget'        => $faker->numberBetween(10000,500000)
 
     ];
