@@ -15,15 +15,15 @@ class PagesController extends Controller
      */
     public function home()
     {
-        if(Auth::check()) {
+        if (Auth::check()) {
             return redirect('/home');
         } else {
             return view('welcome');
         }
-   }
+    }
 
     public function about()
     {
         return view('about');
-   }
+    }
 }

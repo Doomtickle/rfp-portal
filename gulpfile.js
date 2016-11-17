@@ -13,7 +13,7 @@ require('laravel-elixir-vue-2');
  |
  */
 
-elixir((mix) => {
+elixir((mix) = > {
     mix.sass('app.scss')
     .webpack('app.js')
     .copy('node_modules/sweetalert/dist/sweetalert.css', 'resources/assets/css/libs/sweetalert.css')
@@ -25,5 +25,6 @@ elixir((mix) => {
     .styles([
         'libs/sweetalert.css'
     ], './public/css/libs.css');
-});
+})
+;
 

@@ -5,17 +5,19 @@
  */
 namespace App\Http;
 
-class Flash{
+class Flash
+{
 
     public function create($title, $message, $level, $key = 'flash_message')
     {
         session()->flash($key, [
 
-            'title' => $title,
+            'title'   => $title,
             'message' => $message,
             'level'   => $level
         ]);
     }
+
     public function info($title, $message)
     {
         return $this->create($title, $message, 'info');
