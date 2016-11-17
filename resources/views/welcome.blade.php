@@ -4,7 +4,7 @@
     <div class="container">
         <div class="col-md-offset-1 col-md-10">
             <div class="content">
-                <h1 style="font-family:Raleway, sans-serif; font-weight:100;font-size:78px;text-align:center;margin-bottom:10vh;"> KMA Media Purchasing Portal</h1>
+                <h1 style="font-family:Raleway, sans-serif; font-weight:100;font-size:78px;text-align:center;margin-bottom:10vh;"> KMA Media Portal</h1>
                 <p style="font-size:20px;font-weight:100">Valued KMA Media Partner,<br><br>
                     Our Media Purchasing Portal has been designed with you in mind to facilitate an efficient purchasing
                     process with features including:

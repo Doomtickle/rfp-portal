@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
                 <h1>KMA Media Purchasing Portal</h1>
+                <hr>
                 <p>At KMA our goal in the media management process is to be effective
                     and efficient for our clients and YOU, or media partners.
                 </p>
