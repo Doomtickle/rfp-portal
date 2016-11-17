@@ -44,7 +44,7 @@ class ProposalRequestsController extends Controller
      */
     public function create()
     {
-       return view('proposal_requests.create');
+        return view('proposal_requests.create');
     }
 
     /**
@@ -95,10 +95,9 @@ class ProposalRequestsController extends Controller
     {
         $this->validate($request, [
 
-           'proposal' => 'required|mimes:docx,pdf,xlsx'
+            'proposal' => 'required|mimes:docx,pdf,xlsx'
 
         ]);
-
 
 
         $proposal = Proposal::fromForm($request->file('proposal'));
@@ -111,7 +110,7 @@ class ProposalRequestsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -122,8 +121,8 @@ class ProposalRequestsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -134,7 +133,7 @@ class ProposalRequestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -28,7 +28,7 @@
                         <tbody>
                         <?php
                         $prs = App\ProposalRequest::with('user')->paginate(15);
-                       ?>
+                        ?>
                         @foreach($prs as $pr)
                             <tr>
                                 <td>{{ $pr->id }}</td>
