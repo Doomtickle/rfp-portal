@@ -13,6 +13,9 @@
             <div class="col-sm-9 col-md-10 main">
                 <h1 class="page-header">Dashboard</h1>
                 <h2 class="sub-header">Proposal Requests</h2>
+                @if (\Entrust::hasRole('admin'))
+                    <p>This message can only be read by admins</p>
+                @endif
                 <a style="margin-bottom:30px;" class="btn btn-primary" href="/proposal_requests/create">Create RFP</a>
                 <div class="table-responsive">
                     <table class="table table-striped">

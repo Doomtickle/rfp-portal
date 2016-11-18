@@ -18,7 +18,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'first_name'     => $faker->firstName,
         'last_name'      => $faker->lastName,
-        'company'        => str_random(10),
+        'company'        => $faker->word,
         'email'          => $faker->unique()->safeEmail,
         'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
@@ -30,6 +30,7 @@ $factory->define(App\ProposalRequest::class, function (Faker\Generator $faker) {
 
     return [
         'clientName'       => $faker->name,
+        'user_id'          => factory('App\User')->create()->id,
         'clientIndustry'   => $faker->jobTitle,
         'campaignName'     => $faker->colorName,
         'basicDescription' => str_random(40),
