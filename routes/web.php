@@ -16,6 +16,8 @@ Auth::routes();
 Route::get('/about', 'PagesController@about');
 Route::get('/home', 'HomeController@index');
 Route::resource('proposal_requests', 'ProposalRequestsController');
+Route::get('/clients/all', 'ClientsController@index');
+Route::resource('clients', 'ClientsController');
 Route::get('/{clientName}/{campaignName}', 'ProposalRequestsController@show');
 Route::post('{clientName}/{campaignName}/proposals', 'ProposalRequestsController@addFile');
 
