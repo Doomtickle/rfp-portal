@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ClientContact;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Client;
@@ -54,16 +55,30 @@ class ClientsController extends Controller
 
         return Redirect::to('/clients/all');
     }
+    public function addContact($name, Request $request)
+    {
+
+        $contact = ClientContact::create($request->all());
+
+        Client::clientInfo($name)->addClientContact($contact);
+
+        return redirect()->to('/client_list/'.strtolower(str_replace('_', ' ', $name)));
+
+
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $name
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show($name)
     {
-        //
+        $client = Client::clientInfo($name);
+
+        return view('clients.show', compact('client'));
     }
 
     /**

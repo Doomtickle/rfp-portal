@@ -8,10 +8,10 @@
                 Clients <span class="caret pull-right"></span>
             </a>
             <ul class="dropdown-menu">
-                <?php $clients = App\Client::all();?>
                 <li><a href="/clients/all">View All</a></li>
                 @foreach ($clients as $client)
-                    <li><a href="#">{{ $client->name }}</a></li>
+                    <?php $link = strtolower(str_replace(' ', '_', $client->name))?>
+                    <li><a href="/client_list/{{ $link }}">{{ $client->name }}</a></li>
                 @endforeach
             </ul>
         </li>

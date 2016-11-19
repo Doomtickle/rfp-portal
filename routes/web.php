@@ -17,6 +17,8 @@ Route::get('/about', 'PagesController@about');
 Route::get('/home', 'HomeController@index');
 Route::resource('proposal_requests', 'ProposalRequestsController');
 Route::get('/clients/all', 'ClientsController@index');
+Route::post('client_list/{name}/contacts', 'ClientsController@addContact');
+Route::get('client_list/{name}', 'ClientsController@show');
 Route::resource('clients', 'ClientsController');
 Route::get('/{clientName}/{campaignName}', 'ProposalRequestsController@show');
 Route::post('{clientName}/{campaignName}/proposals', 'ProposalRequestsController@addFile');

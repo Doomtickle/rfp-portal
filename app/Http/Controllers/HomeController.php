@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Client;
 
 class HomeController extends Controller
 {
@@ -30,6 +31,8 @@ class HomeController extends Controller
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
         header('Pragma: no-cache');
 
-        return view('home');
+        $clients = Client::all();
+
+        return view('home', compact('clients'));
     }
 }
