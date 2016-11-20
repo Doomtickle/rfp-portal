@@ -5772,4 +5772,9 @@ body {
 .form-control {
   height: 40px; }
 
+ul.dropdown-menu {
+  max-height: 300px;
+  overflow: auto;
+  background: #f5f8fa; }
+
 /*# sourceMappingURL=app.css.map */

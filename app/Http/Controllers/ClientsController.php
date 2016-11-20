@@ -51,7 +51,7 @@ class ClientsController extends Controller
     {
         Client::create($request->all());
 
-        flash()->success('Success!', 'The client has been created');
+//        flash()->success('Success!', 'The client has been created');
 
         return Redirect::to('/clients/all');
     }
