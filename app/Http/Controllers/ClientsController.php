@@ -20,6 +20,7 @@ class ClientsController extends Controller
 
         parent::__construct();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +28,8 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::all();
+        $clients=Client::all();
+
         return view('clients.index', compact('clients'));
     }
 
@@ -38,7 +40,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-       return view('clients.create');
+        return view('clients.create');
     }
 
     /**
@@ -55,14 +57,23 @@ class ClientsController extends Controller
 
         return Redirect::to('/clients/all');
     }
+
     public function addContact($name, Request $request)
     {
 
-        $contact = ClientContact::create($request->all());
+        $this->validate($request, [
+            'first_name'=>'required',
+            'last_name' =>'required',
+            'title'     =>'required',
+            'email'     =>'required',
+            'phone'     =>'required'
+
+        ]);
+        $contact=ClientContact::create($request->all());
 
         Client::clientInfo($name)->addClientContact($contact);
 
-        return redirect()->to('/client_list/'.strtolower(str_replace('_', ' ', $name)));
+        return redirect()->to('/client_list/' . strtolower(str_replace('_', ' ', $name)));
 
 
     }
@@ -76,7 +87,7 @@ class ClientsController extends Controller
      */
     public function show($name)
     {
-        $client = Client::clientInfo($name);
+        $client=Client::clientInfo($name);
 
         return view('clients.show', compact('client'));
     }
@@ -84,7 +95,7 @@ class ClientsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -95,8 +106,8 @@ class ClientsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -107,7 +118,7 @@ class ClientsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
