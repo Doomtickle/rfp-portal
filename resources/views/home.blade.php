@@ -34,9 +34,16 @@
                                 <td>{{ date_format($pr->created_at, 'M d, Y') }}</td>
                                 <td>{{ $pr->user->company }}</td>
                                 <td>
-                                    <a class="btn btn-info" href="{{$pr->clientName.'/'.
-                                        $pr->campaignName }}">
+                                    <a class="btn btn-info"
+                                       href="{{
+                                       strtolower(str_replace(' ', '_', $pr->clientName))}}/{{
+                                       strtolower(str_replace(' ', '_', $pr->campaignName)) }}">
                                         View
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-info" href="proposal_requests/{{ $pr->id }}/edit">
+                                        Edit
                                     </a>
                                 </td>
                             </tr>

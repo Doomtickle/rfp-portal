@@ -5,6 +5,9 @@
         <div class="row">
             <div class="col-md-8"><h1>{{$rfp->clientName}}</h1>
                 <h2>{{$rfp->campaignName}}</h2>
+                <a class="btn btn-info" href="/proposal_requests/{{ $rfp->id }}/edit">
+                    Edit this proposal request
+                </a>
                 <hr>
                 <div class="row">
                     <div class="col-md-5">
