@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RFPRequest;
 use App\ProposalRequest;
 use App\Proposal;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 
 
@@ -50,10 +50,10 @@ class ProposalRequestsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Requests\RFPRequest|Request $request
+     * @param RFPRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\RFPRequest $request)
+    public function store(RFPRequest $request)
     {
 
         $pr = ProposalRequest::create($request->all());
@@ -110,24 +110,30 @@ class ProposalRequestsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param ProposalRequest $proposalRequest
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(ProposalRequest $proposalRequest)
     {
-        //
+        $pr = $proposalRequest;
+        return view('proposal_requests.edit', compact('pr'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param RFPRequest|Request $request
+     * @param ProposalRequest $proposalRequest
      * @return \Illuminate\Http\Response
+     * @internal param Request $request
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(RFPRequest $request, ProposalRequest $proposalRequest)
     {
-        //
+        $proposalRequest->update($request->all());
+
+        return back();
     }
 
     /**
