@@ -22,6 +22,9 @@ Route::delete('proposal_requests/{proposalRequest}', 'ProposalRequestsController
 Route::resource('proposal_requests', 'ProposalRequestsController');
 
 Route::get('/clients/all', 'ClientsController@index');
+Route::get('client_list/{client}/edit', 'ClientsController@edit');
+Route::patch('client_list/{client}', 'ClientsController@update');
+Route::delete('client_list/{client}', 'ClientsController@destroy');
 Route::post('client_list/{name}/contacts', 'ClientsController@addContact');
 Route::get('client_list/{name}', 'ClientsController@show');
 Route::resource('clients', 'ClientsController');
