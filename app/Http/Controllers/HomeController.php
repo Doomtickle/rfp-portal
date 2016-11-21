@@ -31,7 +31,7 @@ class HomeController extends Controller
         header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
         header('Pragma: no-cache');
 
-        $clients = Client::all();
+        $clients=Client::all();
 
         return view('home', compact('clients'));
     }

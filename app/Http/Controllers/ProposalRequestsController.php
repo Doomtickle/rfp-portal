@@ -23,7 +23,7 @@ class ProposalRequestsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except'=>['show']]);
 
         parent::__construct();
     }
@@ -56,9 +56,9 @@ class ProposalRequestsController extends Controller
     public function store(RFPRequest $request)
     {
 
-        $pr = ProposalRequest::create($request->all());
+        $pr=ProposalRequest::create($request->all());
 
-        $pr->user_id = \Auth::user()->id;
+        $pr->user_id=\Auth::user()->id;
 
         $pr->save();
 
@@ -78,7 +78,7 @@ class ProposalRequestsController extends Controller
     public function show($clientName, $campaignName)
     {
 
-        $rfp = ProposalRequest::campaignInfo($clientName, $campaignName);
+        $rfp=ProposalRequest::campaignInfo($clientName, $campaignName);
 
 
         return view('proposal_requests.show', compact('rfp'));
@@ -95,12 +95,12 @@ class ProposalRequestsController extends Controller
     {
         $this->validate($request, [
 
-            'proposal' => 'required|mimes:docx,pdf,xlsx'
+            'proposal'=>'required|mimes:docx,pdf,xlsx'
 
         ]);
 
 
-        $proposal = Proposal::fromForm($request->file('proposal'));
+        $proposal=Proposal::fromForm($request->file('proposal'));
 
         return ProposalRequest::campaignInfo($clientName, $campaignName)->addProposal($proposal);
 
@@ -116,7 +116,8 @@ class ProposalRequestsController extends Controller
      */
     public function edit(ProposalRequest $proposalRequest)
     {
-        $pr = $proposalRequest;
+        $pr=$proposalRequest;
+
         return view('proposal_requests.edit', compact('pr'));
     }
 
@@ -148,6 +149,7 @@ class ProposalRequestsController extends Controller
     {
         /** @var ProposalRequest $proposalRequest */
         $proposalRequest->delete();
+
         return back();
     }
 }

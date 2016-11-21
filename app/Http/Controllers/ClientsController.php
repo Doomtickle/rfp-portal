@@ -117,8 +117,8 @@ class ClientsController extends Controller
     {
         $this->validate($request, [
 
-            'name'     =>  'required',
-            'industry' =>  'required'
+            'name'    =>'required',
+            'industry'=>'required'
 
         ]);
 
@@ -137,6 +137,7 @@ class ClientsController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
+
         return redirect('/clients/all');
 
     }

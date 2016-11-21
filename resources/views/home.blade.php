@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
                         <?php
-                        $prs = App\ProposalRequest::with('user')->paginate(5);
+                        $prs=App\ProposalRequest::with('user')->paginate(5);
                         ?>
                         @foreach($prs as $pr)
                             <tr>
@@ -34,14 +34,15 @@
                                 <td>{{ date_format($pr->created_at, 'M d, Y') }}</td>
                                 <td>{{ $pr->user->company }}</td>
                                 <td>
-                                    <a class="glyphicon glyphicon-eye-open btn btn-info"
+                                    <a class="btn btn-info glyphicon glyphicon-eye-open"
                                        href="{{
                                        strtolower(str_replace(' ', '_', $pr->clientName))}}/{{
                                        strtolower(str_replace(' ', '_', $pr->campaignName)) }}">
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-info glyphicon glyphicon-edit" href="proposal_requests/{{ $pr->id }}/edit">
+                                    <a class="btn btn-info glyphicon glyphicon-edit"
+                                       href="proposal_requests/{{ $pr->id }}/edit">
                                     </a>
                                 </td>
                                 <td>
@@ -49,7 +50,7 @@
                                         {{csrf_field()}}
                                         {{ method_field('DELETE') }}
                                         <div class="form-group">
-                                            <button class="btn btn-danger glyphicon glyphicon-trash delete-btn"></button>
+                                            <a class="btn btn-danger glyphicon glyphicon-trash delete-btn"></a>
                                         </div>
                                     </form>
                                 </td>
