@@ -18,6 +18,7 @@ elixir(mix => {
     .copy('node_modules/sweetalert/dist/sweetalert.css', 'resources/assets/css/libs/sweetalert.css')
     .copy('node_modules/sweetalert/dist/sweetalert-dev.js', 'resources/assets/js/libs/sweetalert-dev.js')
     .copy('node_modules/sweetalert/dist/sweetalert.min.js', 'resources/assets/js/libs/sweetalert.min.js')
+    .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
     .scripts([
         'libs/sweetalert-dev.js'
     ], './public/js/libs.js')
