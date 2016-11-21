@@ -5777,4 +5777,7 @@ ul.dropdown-menu {
   overflow: auto;
   background: #f5f8fa; }
 
+.sidebar {
+  height: 100%; }
+
 /*# sourceMappingURL=app.css.map */

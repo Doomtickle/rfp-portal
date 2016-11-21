@@ -1,18 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8"><h1>{{$rfp->clientName}}</h1>
-                <h2>{{$rfp->campaignName}}</h2>
-                <a class="btn btn-info" href="/proposal_requests/{{ $rfp->id }}/edit">
-                    Edit this proposal request
-                </a>
-                <hr>
-                <div class="row">
+            @include('partials.sidebar')
+            <div class="container">
+                <div class="col-md-10">
+
+                    <h1>{{$rfp->clientName}}</h1>
+                    <h2>{{$rfp->campaignName}}</h2>
+                    <a class="btn btn-info" href="/proposal_requests/{{ $rfp->id }}/edit">
+                        Edit this proposal request
+                    </a>
+                    <hr>
                     <div class="col-md-5">
                         <div class="list-group">
-                            <ul>
+                            <ul style="padding:0;margin:0;">
                                 <li class="list-group-item" style="font-size:1.3em; text-align:center;">Snapshot</li>
                                 <li class="list-group-item"><strong>Industry:</strong> {{ $rfp->clientIndustry }}</li>
                                 <li class="list-group-item"><strong>Flight Date
@@ -48,30 +51,29 @@
                 @endforeach
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="container">
-        <h2>Upload your proposal</h2>
-        <form id="addProposalsForm" action="/{{ $rfp->clientName }}/{{ $rfp->campaignName }}/proposals"
-              method="POST"
-              class="dropzone"
-              enctype="multipart/form-data"
-              style="margin-bottom:50px;">
-            {{ csrf_field() }}
-        </form>
-    </div>
-@endsection
+        <hr>
+        <div class="container">
+            <h2>Upload your proposal</h2>
+            <form id="addProposalsForm" action="/{{ $rfp->clientName }}/{{ $rfp->campaignName }}/proposals"
+                  method="POST"
+                  class="dropzone"
+                  enctype="multipart/form-data"
+                  style="margin-bottom:50px;">
+                {{ csrf_field() }}
+            </form>
+        </div>
+        @endsection
 
-@section('scripts.footer')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
-    <script>
+        @section('scripts.footer')
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
+            <script>
 
-        Dropzone.options.addProposalsForm = {
+                Dropzone.options.addProposalsForm = {
 
-            paramName: 'proposal',
-            maxFilesize: 3,
-            acceptedFiles: '.docx, .pdf, .xlsx, .xls, .csv'
+                    paramName: 'proposal',
+                    maxFilesize: 3,
+                    acceptedFiles: '.docx, .pdf, .xlsx, .xls, .csv'
 
-        };
-    </script>
+                };
+            </script>
 @endsection

@@ -15,7 +15,7 @@
                         },
                         function(isConfirm){
                             if(isConfirm){
-                                swal("Deleted!","The record is forever gone.", "success");
+                                swal("Deleted!","The record is forever gone", "success");
                                 setTimeout(function() {
                                     self.parents(".delete_form").submit();
                                 }, 2000); //2 second delay (2000 milliseconds = 2 seconds)
