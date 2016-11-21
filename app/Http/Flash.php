@@ -37,5 +37,9 @@ class Flash
     {
         return $this->create($title, $message, $level, 'flash_message_overlay');
     }
+    public function deleteItem($title, $message, $level = 'warning')
+    {
+        return $this->create($title, $message, $level, 'flash_message_deleteItem');
+    }
 
 }
