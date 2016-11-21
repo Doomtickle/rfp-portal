@@ -8,7 +8,7 @@
                 <span style="display:inline-block;"><h1>{{ $client->name }}</h1></span>
                 <span style="display:inline-block;"><h2> &gt; {{ $client->industry }}</h2></span>
                 <hr>
-                @include('clients.addClientContact')
+                @include('partials.addClientContact')
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>

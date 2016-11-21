@@ -62,7 +62,6 @@ class ProposalRequestsController extends Controller
 
         $pr->save();
 
-//        return redirect()->back();
         flash()->success('Success!', 'The RFP has been created.');
 
         return Redirect::to('/home');
@@ -86,6 +85,7 @@ class ProposalRequestsController extends Controller
     }
 
     /**
+     * Add the proposal document to the RFP
      * @param $clientName
      * @param $campaignName
      * @param Request $request
@@ -131,6 +131,7 @@ class ProposalRequestsController extends Controller
      */
     public function update(RFPRequest $request, ProposalRequest $proposalRequest)
     {
+        /** @var  ProposalRequest $proposalRequest */
         $proposalRequest->update($request->all());
 
         return back();
@@ -139,11 +140,14 @@ class ProposalRequestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param ProposalRequest $proposalRequest
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(ProposalRequest $proposalRequest)
     {
-        //
+        /** @var ProposalRequest $proposalRequest */
+        $proposalRequest->delete();
+        return back();
     }
 }

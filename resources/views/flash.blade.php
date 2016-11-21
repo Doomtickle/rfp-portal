@@ -4,12 +4,10 @@
             title: "{{ session('flash_message.title') }}",
             text: "{{ session('flash_message.message') }}",
             type: "{{ session('flash_message.level') }}",
-            timer: 1750,
-            showConfirmButton: false
+            showConfirmButton: true
         });
     </script>
 @endif
-
 @if (session()->has('flash_message_overlay'))
     <script>
         swal({

@@ -46,6 +46,15 @@
                                         Edit
                                     </a>
                                 </td>
+                                <td>
+                                    <form id="deletePR" method="POST" action="proposal_requests/{{ $pr->id }}">
+                                        {{csrf_field()}}
+                                        {{ method_field('DELETE') }}
+                                        <div class="form-group">
+                                            <button id="delete" type="submit" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -55,5 +64,4 @@
             </div>
         </div>
     </div>
-
 @endsection
