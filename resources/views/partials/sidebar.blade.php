@@ -4,14 +4,15 @@
         <li><a href="#">Reports</a></li>
         <li><a href="#">Analytics</a></li>
         <li role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="/clients/all" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="/clients/all" role="button" aria-haspopup="true"
+               aria-expanded="false">
                 Clients <span class="caret pull-right"></span>
             </a>
             <ul class="dropdown-menu">
                 <li><a href="/clients/all">View All</a></li>
-                <?php $clients = App\Client::all();?>
+                <?php $clients=App\Client::all();?>
                 @foreach ($clients as $client)
-                    <?php $link = strtolower(str_replace(' ', '_', $client->name))?>
+                    <?php $link=strtolower(str_replace(' ', '_', $client->name))?>
                     <li><a href="/client_list/{{ $link }}">{{ $client->name }}</a></li>
                 @endforeach
             </ul>

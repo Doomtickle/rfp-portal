@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             @include('partials.sidebar')
-            <div class="col-sm-9 col-md-10 main">
+            <div id="main" class="col-sm-9 col-md-10 main">
                 <h1 class="page-header">Dashboard</h1>
                 <h2 class="sub-header">Proposal Requests</h2>
                 @if (\Entrust::hasRole('admin'))
