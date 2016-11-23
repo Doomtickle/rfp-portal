@@ -23,7 +23,7 @@ class ProposalRequestsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>['show', 'test']]);
+        $this->middleware('auth', ['except'=>['show']]);
 
         parent::__construct();
     }
