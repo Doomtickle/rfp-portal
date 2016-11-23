@@ -16,6 +16,7 @@ Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
 Route::get('/home', 'HomeController@index');
 
+Route::get('proposal_requests/test', 'ProposalRequestsController@test');
 Route::get('proposal_requests/{proposalRequest}/edit', 'ProposalRequestsController@edit');
 Route::patch('proposal_requests/{proposalRequest}', 'ProposalRequestsController@update');
 Route::delete('proposal_requests/{proposalRequest}', 'ProposalRequestsController@destroy');

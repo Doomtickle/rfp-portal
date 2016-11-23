@@ -23,7 +23,7 @@ class ProposalRequestsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>['show']]);
+        $this->middleware('auth', ['except'=>['show', 'test']]);
 
         parent::__construct();
     }
@@ -151,5 +151,10 @@ class ProposalRequestsController extends Controller
         $proposalRequest->delete();
 
         return back();
+    }
+
+    public function test()
+    {
+        return ProposalRequest::all();
     }
 }
