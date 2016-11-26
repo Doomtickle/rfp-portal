@@ -1,9 +1,9 @@
 @extends ('layouts.app')
 
-@section('content')
+@section('main-content')
     <div class="container-fluid">
         <div class="row">
-            @include('partials.sidebar')
+
             <div class="col-md-10">
                 <h1>Edit Client Info</h1>
                 <hr>

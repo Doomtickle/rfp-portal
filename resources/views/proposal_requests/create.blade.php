@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::layouts.app')
 
-@section('content')
+@section('main-content')
 
     <div class="container-fluid">
         <div class="row">
-            @include('partials.sidebar')
+
             <div class="col-md-10">
                 <h1>Create a new proposal request</h1>
                 <hr>

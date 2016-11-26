@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('adminlte::layouts.app')
 
-@section('content')
+@section('main-content')
     <div class="container-fluid">
         <div class="row">
-            @include('partials.sidebar')
+
             <div class="col-md-10">
                 <span style="display:inline-block;"><h1>{{ $client->name }}</h1></span>
                 <span style="display:inline-block;"><h2> &gt; {{ $client->industry }}</h2></span>

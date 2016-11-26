@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+/**
+ * Class RegisterController
+ * @package %%NAMESPACE%%\Http\Controllers\Auth
+ */
 class RegisterController extends Controller
 {
     /*
@@ -21,6 +25,16 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view('adminlte::auth.register');
+    }
 
     /**
      * Where to redirect users after login / registration.
@@ -42,35 +56,36 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'first_name' => 'required|max:255',
-            'last_name'  => 'required|max:255',
-            'company'    => 'required|max:255',
-            'email'      => 'required|email|max:255|unique:users',
-            'password'   => 'required|min:6|confirmed',
+            'last_name' => 'required|max:255',
+            'company' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'terms' => 'required',
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return User
      */
     protected function create(array $data)
     {
-        flash()->overlay('Welcome Aboard!', 'Thanks for signing up!');
         return User::create([
             'first_name' => $data['first_name'],
-            'last_name'  => $data['last_name'],
-            'company'    => $data['company'],
-            'email'      => $data['email'],
-            'password'   => bcrypt($data['password']),
+            'last_name' => $data['last_name'],
+            'company' => $data['company'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
         ]);
+        flash()->success('Welcome Aboard!', 'Thanks for signing up!');
     }
 }
