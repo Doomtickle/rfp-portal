@@ -38,30 +38,30 @@ desired effect
     @include('adminlte::layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+        <div class="content-wrapper">
 
         @include('adminlte::layouts.partials.contentheader')
 
         <!-- Main content -->
-        <section class="content">
-            <!-- Your Page Content Here -->
-            @yield('main-content')
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+            <section class="content">
+                <!-- Your Page Content Here -->
+                @yield('main-content')
+            </section><!-- /.content -->
+        </div><!-- /.content-wrapper -->
+    </div>
 
     @include('adminlte::layouts.partials.controlsidebar')
 
     @include('adminlte::layouts.partials.footer')
 
 </div><!-- ./wrapper -->
-</div>
 @section('scripts')
     @include('adminlte::layouts.partials.scripts')
 @stop
 
-@yield('scripts.footer')
 <script src="/js/app.js"></script>
 <script src="/js/libs.js"></script>
+@yield('scripts.footer')
 @include('flash')
 </body>
 </html>

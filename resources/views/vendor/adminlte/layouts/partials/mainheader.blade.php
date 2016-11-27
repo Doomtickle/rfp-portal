@@ -19,38 +19,52 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
+                <?php
+                $currentUserId=Auth::user()->id;
+                $threads=Cmgmyr\Messenger\Models\Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
+                $count=Auth::user()->newThreadsCount();
+                ?>
                 <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="label label-success">4</span>
+                        @if($count > 0)
+                            <span class="label label-success">{{ $count }}</span>
+                        @endif
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">{{ trans('adminlte_lang::message.tabmessages') }}</li>
+                        <li class="header">{{str_plural('You have '. $count .' new message', $count) }}</li>
                         <li>
                             <!-- inner menu: contains the messages -->
                             <ul class="menu">
-                                <li><!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <!-- User Image -->
-                                        </div>
-                                        <!-- Message title and timestamp -->
-                                        <h4>
-                                            {{ trans('adminlte_lang::message.supteam') }}
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                        </h4>
-                                        <!-- The message -->
-                                        <p>{{ trans('adminlte_lang::message.awesometheme') }}</p>
-                                    </a>
-                                </li><!-- end message -->
+                                @foreach($threads as $thread)
+                                    <li><!-- start message -->
+                                        <a href="/messages/{{$thread->id}}">
+                                            <div class="pull-left">
+                                            </div>
+                                            <!-- Message title and timestamp -->
+                                            <h4>
+                                                {{ $thread->subject }}
+                                                <small>
+                                                    <i class="fa fa-clock-o"></i> {{$thread->created_at->diffForHumans()}}
+                                                </small>
+                                            </h4>
+                                            <!-- The message -->
+                                            <p>{{$thread->latestMessage->body}}</p>
+                                        </a>
+                                    </li><!-- end message -->
+                                @endforeach
                             </ul><!-- /.menu -->
                         </li>
-                        <li class="footer"><a href="#">x</a></li>
+                        <li class="footer"><a href="/messages">
+                                See all messages
+                            </a>
+                        </li>
                     </ul>
                 </li><!-- /.messages-menu -->
 
                 <!-- Notifications Menu -->
+
                 <li class="dropdown notifications-menu">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -94,7 +108,9 @@
                                         <!-- The progress bar -->
                                         <div class="progress xs">
                                             <!-- Change the css width attribute to simulate progress -->
-                                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                 role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                 aria-valuemax="100">
                                                 <span class="sr-only">20% {{ trans('adminlte_lang::message.complete') }}</span>
                                             </div>
                                         </div>
@@ -110,8 +126,8 @@
                 @if (Auth::guest())
                     <li><a href="{{ url('/register') }}">{{ trans('adminlte_lang::message.register') }}</a></li>
                     <li><a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
-                @else
-                    <!-- User Account Menu -->
+            @else
+                <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -123,7 +139,7 @@
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" />
+                                <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image"/>
                                 <p>
                                     {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
                                 </p>
@@ -131,19 +147,20 @@
                             <!-- Menu Body -->
                             <li class="user-body">
                                 {{--<div class="col-xs-4 text-center">--}}
-                                    {{--<a href="#">{{ trans('adminlte_lang::message.followers') }}</a>--}}
+                                {{--<a href="#">{{ trans('adminlte_lang::message.followers') }}</a>--}}
                                 {{--</div>--}}
                                 {{--<div class="col-xs-4 text-center">--}}
-                                    {{--<a href="#">{{ trans('adminlte_lang::message.sales') }}</a>--}}
+                                {{--<a href="#">{{ trans('adminlte_lang::message.sales') }}</a>--}}
                                 {{--</div>--}}
                                 {{--<div class="col-xs-4 text-center">--}}
-                                    {{--<a href="#">{{ trans('adminlte_lang::message.friends') }}</a>--}}
+                                {{--<a href="#">{{ trans('adminlte_lang::message.friends') }}</a>--}}
                                 {{--</div>--}}
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ url('/settings') }}" class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.profile') }}</a>
+                                    <a href="{{ url('/settings') }}"
+                                       class="btn btn-default btn-flat">{{ trans('adminlte_lang::message.profile') }}</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
@@ -152,7 +169,8 @@
                                         {{ trans('adminlte_lang::message.signout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                          style="display: none;">
                                         {{ csrf_field() }}
                                         <input type="submit" value="logout" style="display: none;">
                                     </form>
@@ -161,9 +179,9 @@
                             </li>
                         </ul>
                     </li>
-                @endif
+            @endif
 
-                <!-- Control Sidebar Toggle Button -->
+            <!-- Control Sidebar Toggle Button -->
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>

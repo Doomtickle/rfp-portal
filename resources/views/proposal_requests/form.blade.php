@@ -4,6 +4,7 @@
         <label for="clientName">Client</label>
         <select name="clientName" id="clientName" class="form-control">
             <?php $clients = App\Client::all() ?>
+            <option value="">Select a client</option>
             @foreach($clients as $client)
                 <option value="{{ $client->name }}">{{ $client->name }}</option>
             @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -20,5 +21,6 @@ class Controller extends BaseController
         view()->share('users', User::all());
     }
 }
+
 
 
