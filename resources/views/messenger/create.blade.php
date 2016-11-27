@@ -14,8 +14,8 @@
                         <label for="message_recipient">To:</label>
                         <select id="message_recipient" class="message_recipient form-control"
                                 multiple="multiple" name="recipients[]">
-                            @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</option>
+                            @foreach ($users as $userOption)
+                                <option value="{{$userOption->id}}">{{$userOption->first_name}} {{$userOption->last_name}}</option>
                             @endforeach
 
                         </select>

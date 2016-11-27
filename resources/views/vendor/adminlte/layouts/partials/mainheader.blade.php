@@ -142,6 +142,8 @@
                                 <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image"/>
                                 <p>
                                     {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
+                                    <br>
+                                    <small>User since: {{ date_format(Auth::user()->created_at, 'M d, Y') }}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->

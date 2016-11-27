@@ -7,16 +7,16 @@
                 <h1>{{ $thread->subject }}</h1>
 
                 @foreach($thread->messages as $message)
-                    <div style="border:1px solid #fff;" class="media">
+                    <div class="media">
                         <a class="pull-left" href="#">
-                            <img src="//www.gravatar.com/avatar/{{ md5($message->user->email) }} ?s=64"
-                                 alt="{{ $message->user->name }}" class="img-circle">
+                            <img style="padding-top:15px;" src="//www.gravatar.com/avatar/{{ md5($message->user->email) }} ?s=64"
+                                 alt="{{ $message->user->first_name }} {{ $message->user->last_name }}" class="img img-responsive">
                         </a>
                         <div class="media-body">
                             <h5 class="media-heading">{{ $message->user->first_name }} {{$message->user->last_name}}</h5>
-                            <p>{{ $message->body }}</p>
+                            <p style="background: #fff;padding:20px;border-radius:5px;">{{ $message->body }}</p>
                             <div class="text-muted">
-                                <small>Posted {{ $message->created_at->diffForHumans() }}</small>
+                                <small>Sent {{ $message->created_at->diffForHumans() }}</small>
                             </div>
                         </div>
                     </div>
@@ -27,23 +27,23 @@
                 {{csrf_field()}}
                 {{method_field('put')}}
                 <!-- Message Form Input -->
-                    <div class="form-group">
-                        <textarea name="message" id="message" class="form-control" value="{{ old('message') }}">
-                            </textarea>
-                    </div>
                     @if($users->count() > 0)
                         <div class="form-group">
                             <label for="message_recipient">CC:</label>
                             <select id="message_recipient" class="message_recipient form-control"
                                     multiple="multiple" name="recipients[]">
-                                @foreach ($users as $user)
-                                    <option value="{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</option>
+                                @foreach ($users as $userOption)
+                                    <option value="{{$userOption->id}}">{{$userOption->first_name}} {{$userOption->last_name}}</option>
                                 @endforeach
 
                             </select>
                         </div>
 
-                @endif
+                    @endif
+                    <div class="form-group">
+                        <textarea rows="8" name="message" id="message" class="form-control" value="{{ old('message') }}">
+                            </textarea>
+                    </div>
 
                 <!-- Submit Form Input -->
                     <div class="form-group">

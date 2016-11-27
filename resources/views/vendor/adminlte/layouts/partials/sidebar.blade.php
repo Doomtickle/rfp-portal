@@ -61,6 +61,7 @@
                         </li>
                     @endforeach
                 </ul>
+            </li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
