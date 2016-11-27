@@ -33,7 +33,8 @@
                         @endif
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">{{str_plural('You have '. $count .' new message', $count) }}</li>
+                        <li class="header">{{str_plural('You have '. $count .' new message', $count) }}
+                        </li>
                         <li>
                             <!-- inner menu: contains the messages -->
                             <ul class="menu">
@@ -58,6 +59,10 @@
                         </li>
                         <li class="footer"><a href="/messages">
                                 See all messages
+                            </a>
+                        </li>
+                        <li class="footer"><a href="/messages/create">
+                                Create new message
                             </a>
                         </li>
                     </ul>

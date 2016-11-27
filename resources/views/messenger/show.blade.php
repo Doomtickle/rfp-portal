@@ -6,17 +6,27 @@
             <div class="col-md-10">
                 <h1>{{ $thread->subject }}</h1>
 
-                @foreach($thread->messages as $message)
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img style="padding-top:15px;" src="//www.gravatar.com/avatar/{{ md5($message->user->email) }} ?s=64"
-                                 alt="{{ $message->user->first_name }} {{ $message->user->last_name }}" class="img img-responsive">
-                        </a>
-                        <div class="media-body">
-                            <h5 class="media-heading">{{ $message->user->first_name }} {{$message->user->last_name}}</h5>
-                            <p style="background: #fff;padding:20px;border-radius:5px;">{{ $message->body }}</p>
-                            <div class="text-muted">
-                                <small>Sent {{ $message->created_at->diffForHumans() }}</small>
+                @foreach($thread->messages->reverse() as $message)
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img style="padding-top:15px;"
+                                             src="//www.gravatar.com/avatar/{{ md5($message->user->email) }} ?s=64"
+                                             alt="{{ $message->user->first_name }} {{ $message->user->last_name }}"
+                                             class="img img-responsive">
+                                    </a>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">{{ $message->user->first_name }} {{$message->user->last_name}}</h5>
+                                        <p style="background: #fff;padding:20px;border-radius:5px;">
+                                            {{ $message->body }}
+                                            <br>
+                                            <small class="pull-right">
+                                                Sent {{ $message->created_at->diffForHumans() }}</small>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -41,11 +51,12 @@
 
                     @endif
                     <div class="form-group">
-                        <textarea rows="8" name="message" id="message" class="form-control" value="{{ old('message') }}">
+                        <textarea rows="8" name="message" id="message" class="form-control"
+                                  value="{{ old('message') }}">
                             </textarea>
                     </div>
 
-                <!-- Submit Form Input -->
+                    <!-- Submit Form Input -->
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Reply</button>
                     </div>
