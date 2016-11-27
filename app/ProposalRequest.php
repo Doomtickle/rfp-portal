@@ -13,14 +13,14 @@ class ProposalRequest extends Model
 
     protected $fillable = [
 
-        'clientName',
-        'clientIndustry',
-        'campaignName',
-        'basicDescription',
-        'flightDateStart',
-        'flightDateEnd',
+        'budget',
         'staggered',
-        'budget'
+        'clientName',
+        'campaignName',
+        'flightDateEnd',
+        'clientIndustry',
+        'flightDateStart',
+        'basicDescription'
 
     ];
 

@@ -25682,6 +25682,9 @@ label,
 .error-page {
   background-color: #ecf0f5;
 }
+.alert a {
+  color: #216a94 !important;
+}
 
 /*# sourceMappingURL=adminlte-app.css.map */
 
