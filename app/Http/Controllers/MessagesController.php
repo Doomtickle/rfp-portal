@@ -8,6 +8,7 @@ use Cmgmyr\Messenger\Models\Message;
 use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -27,10 +28,10 @@ class MessagesController extends Controller
         //$threads=Thread::getAllLatest()->get();
 
         // All threads that user is participating in
-         $threads = Thread::forUser($currentUserId)->latest('updated_at')->get();
+        $threads=Thread::forUser($currentUserId)->latest('updated_at')->get();
 
         // All threads that user is participating in, with new messages
-         //$threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
+        //$threads = Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
 
         return view('messenger.index', compact('threads', 'currentUserId'));
     }
@@ -119,10 +120,11 @@ class MessagesController extends Controller
     /**
      * Adds a new message to a current thread.
      *
+     * @param Request $request
      * @param $id
      * @return mixed
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         try {
             $thread=Thread::findOrFail($id);
@@ -158,6 +160,9 @@ class MessagesController extends Controller
             $thread->addParticipant(Input::get('recipients'));
         }
 
-        return redirect('messages/' . $id);
+        if($request->ajax()){
+            return response()->json(['data' => ['redirect' => 'messages/'.$id]]);
+        }
+            return redirect('messages/' . $id);
     }
 }

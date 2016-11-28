@@ -21,7 +21,7 @@
                 <!-- Messages: style can be found in dropdown.less-->
                 <?php
                 $currentUserId=Auth::user()->id;
-                $threads=Cmgmyr\Messenger\Models\Thread::forUserWithNewMessages($currentUserId)->latest('updated_at')->get();
+                $threads=Cmgmyr\Messenger\Models\Thread::forUser($currentUserId)->latest('updated_at')->get();
                 $count=Auth::user()->newThreadsCount();
                 ?>
                 <li class="dropdown messages-menu">

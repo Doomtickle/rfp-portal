@@ -40,8 +40,9 @@ elixir(function(mix) {
         .copy('node_modules/sweetalert/dist/sweetalert-dev.js', 'resources/assets/js/libs/sweetalert-dev.js')
         .copy('node_modules/sweetalert/dist/sweetalert.min.js', 'resources/assets/js/libs/sweetalert.min.js')
         .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
+        .copy('node_modules/admin-lte/dist/js/app.js', 'resources/assets/js/libs/adminLTE.js')
         .scripts([
-            'libs/sweetalert-dev.js'
+            'libs/sweetalert-dev.js', 'resources/assets/js/libs/adminLTE.js'
         ], './public/js/libs.js')
         .styles([
             'libs/sweetalert.css'
