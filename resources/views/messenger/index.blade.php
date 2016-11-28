@@ -17,7 +17,7 @@
                         <?php $class=$thread->isUnread($currentUserId) ? 'alert-info' : ''; ?>
                         <div class="media alert {{ $class }}">
                             <h4 class="media-heading">{!! link_to('messages/' . $thread->id, $thread->subject) !!}</h4>
-                            @foreach($thread->messages->load('user') as $message)
+                            @foreach($thread->messages->reverse()->load('user') as $message)
                                 {{--                <p>{{ $thread->latestMessage->body }}</p>--}}
                                 <p style="background:#fff;padding:10px;">
                                    <span><strong>{{$message->user->first_name}} {{$message->user->last_name}}: </strong></span>
