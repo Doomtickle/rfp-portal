@@ -42,7 +42,7 @@ elixir(function(mix) {
         .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
         .copy('node_modules/admin-lte/dist/js/app.js', 'resources/assets/js/libs/adminLTE.js')
         .scripts([
-            'libs/sweetalert-dev.js', 'resources/assets/js/libs/adminLTE.js'
+            'libs/sweetalert-dev.js'
         ], './public/js/libs.js')
         .styles([
             'libs/sweetalert.css'

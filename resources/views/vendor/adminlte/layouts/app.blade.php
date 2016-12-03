@@ -59,6 +59,7 @@ desired effect
     @include('adminlte::layouts.partials.scripts')
 @stop
 
+
 <script src="/js/app.js"></script>
 <script src="/js/libs.js"></script>
 <script src="https://almsaeedstudio.com/themes/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
