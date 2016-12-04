@@ -26,6 +26,8 @@
     Route::get('/home', 'HomeController@index');
 
     Route::resource('/tasklist', 'TaskListController');
+    Route::get('/tasklist/{name}', 'TaskListController@show');
+    Route::post('/tasklist/{name}/tasks', 'TaskListController@addTask');
 
 
     Route::get('/clients/all', 'ClientsController@index');
