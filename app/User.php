@@ -41,4 +41,9 @@ class User extends Authenticatable
         return $this->hasMany(ProposalRequest::class);
     }
 
+    public function taskLists()
+    {
+        return $this->hasMany(TaskList::class);
+    }
+
 }
