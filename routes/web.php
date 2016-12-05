@@ -32,7 +32,7 @@
 
     Route::get('/clients/all', 'ClientsController@index');
     Route::get('proposal_requests/test', 'ProposalRequestsController@test');
-    Route::get('proposal_requests/{proposalRequest}/edit', 'ProposalRequestsController@edit');
+    Route::get('proposal_requets/{proposalRequest}/edit', 'ProposalRequestsController@edit');
     Route::patch('proposal_requests/{proposalRequest}', 'ProposalRequestsController@update');
     Route::delete('proposal_requests/{proposalRequest}', 'ProposalRequestsController@destroy');
     Route::resource('proposal_requests', 'ProposalRequestsController');
