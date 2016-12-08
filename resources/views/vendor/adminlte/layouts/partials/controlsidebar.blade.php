@@ -46,7 +46,7 @@
                             @foreach($tasklist->tasks()->get() as $task)
                                 <li>
                                     {{$task->task_name}}
-                                    <input class="pull-right" type="checkbox" name="complete">
+                                    <span class="pull-right" style="padding-right:5px;"><input class="pull-right" type="checkbox"></span>
                                 </li>
                             @endforeach
                         </ul>
