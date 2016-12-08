@@ -8,6 +8,9 @@
       user experience. Slimscroll is required when using the
       fixed layout. -->
 <script>
+    $('input').iCheck();
+</script>
+<script>
 window.Laravel = <?php echo json_encode([
         'csrfToken' => csrf_token(),
 ]); ?>

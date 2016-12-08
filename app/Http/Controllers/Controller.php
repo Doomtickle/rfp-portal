@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TaskList;
 use App\User;
 use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -14,11 +15,15 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * Controller constructor.
+     */
     public function __construct()
     {
         view()->share('signedIn', Auth::check());
         view()->share('user', Auth::user());
         view()->share('users', User::all());
+        view()->share('tasklists', TaskList::with('tasks')->get());
     }
 }
 

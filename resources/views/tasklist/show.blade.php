@@ -13,6 +13,8 @@
                         <thead>
                         <tr>
                             <th>Task Name</th>
+                            <th>Due Date</th>
+                            <th>Complete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -20,7 +22,7 @@
                             <tr>
                                 <td>{{ $task->task_name }}</td>
                                 <td>{{ $task->due_date }}</td>
-                                <td>{{ $task->complete }}</td>
+                                <td>{{ ($task->complete) ? 'Yes' : 'No' }}</td>
                             </tr>
                         @endforeach
                         </tbody>

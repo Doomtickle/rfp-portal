@@ -12,7 +12,7 @@
             <h3 class="control-sidebar-heading">{{ trans('adminlte_lang::message.recentactivity') }}</h3>
             <ul class='control-sidebar-menu'>
                 <li>
-                    <a href='javascript::;'>
+                    <a href='javascript:;'>
                         <i class="menu-icon fa fa-birthday-cake bg-red"></i>
                         <div class="menu-info">
                             <h4 class="control-sidebar-subheading">{{ trans('adminlte_lang::message.birthday') }}</h4>
@@ -22,24 +22,42 @@
                 </li>
             </ul><!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">{{ trans('adminlte_lang::message.progress') }}</h3>
-            <ul class='control-sidebar-menu'>
-                <li>
-                    <a href='javascript::;'>
-                        <h4 class="control-sidebar-subheading">
-                            {{ trans('adminlte_lang::message.customtemplate') }}
-                            <span class="label label-danger pull-right">70%</span>
-                        </h4>
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                        </div>
-                    </a>
-                </li>
-            </ul><!-- /.control-sidebar-menu -->
+
+            @foreach ($tasklists as $tasklist)
+                <?php $completedTasks = $tasklist->tasks->where('complete', true)->count();
+                $totalTasks = $tasklist->tasks->count();
+                $progress = ($completedTasks / $totalTasks) * 100;
+                ?>
+
+                <h3 class="control-sidebar-heading">{{ $tasklist->name }}</h3>
+                <ul class='control-sidebar-menu'>
+                    <li>
+                        <a href='javascript:;'>
+                            <h4 class="control-sidebar-subheading">
+                                Progress
+                                <span class="label label-danger pull-right">{{number_format($progress, 0)}}%</span>
+                            </h4>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger"
+                                     style="width: {{ number_format($progress, 0)}}%"></div>
+                            </div>
+                        </a>
+                        <ul>
+                            @foreach($tasklist->tasks()->get() as $task)
+                                <li>
+                                    {{$task->task_name}}
+                                    <input class="pull-right" type="checkbox" name="complete">
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul><!-- /.control-sidebar-menu -->
+            @endforeach
 
         </div><!-- /.tab-pane -->
         <!-- Stats tab content -->
-        <div class="tab-pane" id="control-sidebar-stats-tab">{{ trans('adminlte_lang::message.statstab') }}</div><!-- /.tab-pane -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">{{ trans('adminlte_lang::message.statstab') }}</div>
+        <!-- /.tab-pane -->
         <!-- Settings tab content -->
         <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">

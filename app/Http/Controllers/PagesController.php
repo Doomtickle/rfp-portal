@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+
+    public function __construct()
+    {
+
+        parent::__construct();
+    }
     /**
      * @return \Illuminate\Contracts\View\Factory|
      * \Illuminate\Http\RedirectResponse|
