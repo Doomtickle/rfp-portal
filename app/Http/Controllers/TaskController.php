@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class TaskController extends Controller
 {
@@ -62,11 +64,10 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }
@@ -80,5 +81,20 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @param Task $task
+     * @return mixed
+     */
+    public function completeTask(Request $request, Task $task)
+    {
+
+        $task->update(['complete' => true]);
+
+        $task->save();
+
+        return back();
     }
 }

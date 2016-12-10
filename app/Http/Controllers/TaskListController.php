@@ -5,6 +5,7 @@
     use App\Task;
     use App\TaskList;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
 
     class TaskListController extends Controller
     {
@@ -68,6 +69,7 @@
             ]);
 
             $task = Task::create($request->all());
+            $task->user_id = \Auth::user()->id;
 
             TaskList::taskListInfo($name)->addTaskToTaskList($task);
 

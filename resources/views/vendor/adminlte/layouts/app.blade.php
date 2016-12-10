@@ -64,9 +64,21 @@ desired effect
 <script src="/js/libs.js"></script>
 <script>
     $(document).ready(function(){
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
+        $('.task_complete').each(function(){
+            var self = $(this),
+                    label = self.next(),
+                    label_text = label.text();
+
+            label.remove();
+            self.iCheck({
+                checkboxClass: 'icheckbox_line-red',
+                radioClass: 'iradio_line-red',
+                insert: '<div class="icheck_line-icon"></div>' + label_text
+            });
+            $('.task_complete').on('ifChecked', function(event){
+
+                this.form.submit();
+            });
         });
     });
 </script>

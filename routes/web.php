@@ -28,6 +28,7 @@
     Route::resource('/tasklist', 'TaskListController');
     Route::get('/tasklist/{name}', 'TaskListController@show');
     Route::post('/tasklist/{name}/tasks', 'TaskListController@addTask');
+    Route::post('/tasks/{task}/complete', 'TaskController@completeTask');
 
 
     Route::get('/clients/all', 'ClientsController@index');

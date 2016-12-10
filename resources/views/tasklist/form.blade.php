@@ -8,5 +8,5 @@
 </div>
 <hr>
 <div class="form-group">
-    <button type="submit" class="btn btn-primary">Creat Task List</button>
+    <button type="submit" class="btn btn-primary">Create Task List</button>
 </div>

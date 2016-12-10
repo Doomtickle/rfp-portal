@@ -9,7 +9,7 @@
     <div class="tab-content">
         <!-- Home tab content -->
         <div class="tab-pane active" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">{{ trans('adminlte_lang::message.recentactivity') }}</h3>
+            <h3 class="control-sidebar-heading">My Assistant</h3>
             <ul class='control-sidebar-menu'>
                 <li>
                     <a href='javascript:;'>
@@ -42,15 +42,17 @@
                                      style="width: {{ number_format($progress, 0)}}%"></div>
                             </div>
                         </a>
-                        <ul>
-                            @foreach($tasklist->tasks()->get() as $task)
-                                <li>
-                                    {{$task->task_name}}
-                                    <span class="pull-right" style="padding-right:5px;"><input class="pull-right" type="checkbox"></span>
-                                </li>
-                            @endforeach
-                        </ul>
                     </li>
+                    @foreach($tasklist->tasks()->where(['complete' => false])->get() as $task)
+                        <li style="padding:5px 10px;">
+                            <form action="/tasks/{{ $task->id }}/complete" method="POST">
+                                <input type="checkbox" name="complete" class="task_complete" value="{{ $task->id }}">
+                                <label>{{ $task->task_name }}</label>
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                        @endforeach
+                        </li>
                 </ul><!-- /.control-sidebar-menu -->
             @endforeach
 
