@@ -95,6 +95,17 @@ class TaskController extends Controller
 
         $task->save();
 
-        return back();
+        $completedTasks = Task::where(['complete' => true, 'user_id' => \Auth::user()->id])->count();
+
+        $allTasks = Task::where(['user_id' => \Auth::user()->id ])->count();
+
+        $progress = ($completedTasks / $allTasks) * 100;
+
+        $data = [
+            'id' => $task->id,
+            'progress' => number_format($progress, 0)
+        ];
+
+        return response()->json($data);
     }
 }

@@ -24,7 +24,7 @@
 
 
             @foreach ($tasklists as $tasklist)
-                <?php $completedTasks = $tasklist->tasks->where('complete', true)->count();
+                <?php $completedTasks = $tasklist->tasks->where('complete',true)->count();
                 $totalTasks = $tasklist->tasks->count();
                 $progress = ($completedTasks / $totalTasks) * 100;
                 ?>
@@ -35,18 +35,19 @@
                         <a href='javascript:;'>
                             <h4 class="control-sidebar-subheading">
                                 Progress
-                                <span class="label label-danger pull-right">{{number_format($progress, 0)}}%</span>
+                                <span id="progress-percent" class="label label-danger pull-right">{{number_format($progress, 0)}}%</span>
                             </h4>
                             <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger"
-                                     style="width: {{ number_format($progress, 0)}}%"></div>
+                                <div id="progress-bar" class="progress-bar progress-bar-danger"
+                                     style="width: {{  $progress }}%"></div>
                             </div>
                         </a>
                     </li>
                     @foreach($tasklist->tasks()->where(['complete' => false])->get() as $task)
                         <li style="padding:5px 10px;">
-                            <form action="/tasks/{{ $task->id }}/complete" method="POST">
-                                <input type="checkbox" name="complete" class="task_complete" value="{{ $task->id }}">
+                            <form action="" method="POST" id="task-{{ $task->id }}">
+                                <input type="checkbox" name="complete" class="task_complete"
+                                       value="{{ $task->id }}">
                                 <label>{{ $task->task_name }}</label>
                                 {{ csrf_field() }}
                             </form>

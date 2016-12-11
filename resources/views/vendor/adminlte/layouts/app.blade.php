@@ -63,8 +63,8 @@ desired effect
 <script src="/js/app.js"></script>
 <script src="/js/libs.js"></script>
 <script>
-    $(document).ready(function(){
-        $('.task_complete').each(function(){
+    $(document).ready(function () {
+        $('.task_complete').each(function () {
             var self = $(this),
                     label = self.next(),
                     label_text = label.text();
@@ -75,10 +75,41 @@ desired effect
                 radioClass: 'iradio_line-red',
                 insert: '<div class="icheck_line-icon"></div>' + label_text
             });
-            $('.task_complete').on('ifChecked', function(event){
+//                this.form.submit();
+        });
+        $('.task_complete').on('ifChecked', function (e) {
 
-                this.form.submit();
+            //TODO: find out why I have to do this
+            //this is a workaround for ajax requests sometimes throwing a 500 Internal Server
+            //error.  This will prefilter before each request.
+            $.ajaxPrefilter(function (options, originalOptions, xhr) { // this will run before each request
+                var token = $('meta[name="csrf-token"]').attr('content'); // or _token, whichever you are using
+
+                if (token) {
+                    return xhr.setRequestHeader('X-CSRF-TOKEN', token); // adds directly to the XmlHttpRequest Object
+                }
             });
+            e.preventDefault();
+
+            var el = $(this);
+            var myurl = "/tasks/" + el.val() + "/complete";
+            $.ajax({
+                type: "POST",
+                url: myurl,
+                data: $(this).serialize(),
+                success: function (data) {
+                    console.log(data);
+                    $("#task-" + data['id']).remove();
+                    $("#progress-percent").text(data['progress'] + "%");
+                    $("#progress-bar").removeAttr('style').css("width", data['progress'] + "%")
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.status);
+                    console.log(xhr.responseText);
+                    console.log(thrownError);
+                }
+            })
         });
     });
 </script>
