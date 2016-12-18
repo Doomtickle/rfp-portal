@@ -27,7 +27,6 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        $test_variable = 'New test variable';
         return view('adminlte::auth.login');
     }
 
