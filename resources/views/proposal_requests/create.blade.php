@@ -24,5 +24,3 @@
         </div>
     </div>
 @stop
-@section('scripts.footer')
-    </script>

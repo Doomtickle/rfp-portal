@@ -9,7 +9,6 @@
 
     class TaskListController extends Controller
     {
-
         public function __construct()
         {
             $this->middleware('auth');
@@ -61,7 +60,6 @@
 
         public function addTask($name, Request $request)
         {
-
             $this->validate($request, [
                 'task_name'     => 'required',
                 'due_date' => 'required'
@@ -73,9 +71,7 @@
 
             TaskList::taskListInfo($name)->addTaskToTaskList($task);
 
-            return redirect()->to('/tasklist/'. $name );
-
-
+            return redirect()->to('/tasklist/'. $name);
         }
 
         /**

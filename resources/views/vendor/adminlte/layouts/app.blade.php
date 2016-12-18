@@ -9,26 +9,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('adminlte::layouts.partials.htmlheader')
 @show
 
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="skin-blue sidebar-mini sidebar-collapse fixed">
 <div id="app">
     <div class="wrapper">
@@ -113,7 +93,7 @@ desired effect
         });
     });
 </script>
-<script src="https://almsaeedstudio.com/themes/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js"></script>
 @yield('scripts.footer')
 @include('flash')
 </body>

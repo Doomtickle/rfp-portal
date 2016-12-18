@@ -44,7 +44,6 @@ class ProposalRequest extends Model
         $campaignName = strtolower(str_replace('_', ' ', $campaignName));
 
         return static::where(compact('clientName', 'campaignName'))->with('user')->first();
-
     }
 
     public function proposals()

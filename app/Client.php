@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\ClientContact;
+use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {

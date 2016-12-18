@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RFPRequest;
-use App\ProposalRequest;
 use App\Proposal;
+use App\ProposalRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\RFPRequest;
 use Illuminate\Support\Facades\Redirect;
-
 
 /**
  * @property  user_id
@@ -55,7 +54,6 @@ class ProposalRequestsController extends Controller
      */
     public function store(RFPRequest $request)
     {
-
         $pr=ProposalRequest::create($request->all());
 
         $pr->user_id=\Auth::user()->id;
@@ -77,7 +75,6 @@ class ProposalRequestsController extends Controller
      */
     public function show($clientName, $campaignName)
     {
-
         $rfp=ProposalRequest::campaignInfo($clientName, $campaignName);
 
 
@@ -103,8 +100,6 @@ class ProposalRequestsController extends Controller
         $proposal=Proposal::fromForm($request->file('proposal'));
 
         return ProposalRequest::campaignInfo($clientName, $campaignName)->addProposal($proposal);
-
-
     }
 
     /**

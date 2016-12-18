@@ -1,14 +1,13 @@
 <?php
 use App\ProposalRequest;
 
-/**
- * Created by Daron Adkins.
- * Date: 11/6/16
- * @param $title
- * @param $message
- * @return \Illuminate\Foundation\Application|mixed
- */
 
+/**
+ * Handles the flash messaging system
+ *
+ * @param mixed $title
+ * @param mixed $message
+ */
 function flash($title = null, $message = null)
 {
     $flash = app('App\Http\Flash');
